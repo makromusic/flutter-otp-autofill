@@ -26,7 +26,6 @@ const getTelephoneHint = 'getTelephoneHint';
 const startListenUserConsentMethod = 'startListenUserConsent';
 const startListenRetrieverMethod = 'startListenRetriever';
 const stopListenForCodeMethod = 'stopListenForCode';
-const getAppSignatureMethod = 'getAppSignature';
 
 /// Arguments.
 const senderTelephoneNumber = 'senderTelephoneNumber';
@@ -52,15 +51,6 @@ class OTPInteractor {
   })  : assert(channel.name == channelName),
         _channel = channel,
         _platform = platform ?? PlatformWrapper();
-
-  /// Get app signature, that used in Retriever API.
-  Future<String?> getAppSignature() async {
-    if (_platform.isAndroid) {
-      return _channel.invokeMethod<String>(getAppSignatureMethod);
-    } else {
-      throw UnsupportedPlatform();
-    }
-  }
 
   /// Broadcast receiver stop listen for OTP code, use in dispose.
   Future<Object?> stopListenForCode() {

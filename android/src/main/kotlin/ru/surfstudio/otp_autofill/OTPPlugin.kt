@@ -82,12 +82,6 @@ public class OTPPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
                 unRegisterBroadcastReceivers()
                 result.success(true)
             }
-            getAppSignatureMethod -> {
-                if (activity != null) {
-                    val signature = AppSignatureHelper(this.activity!!).getAppSignatures()[0]
-                    result.success(signature)
-                } else result.success(null)
-            }
             else -> result.notImplemented()
         }
     }
